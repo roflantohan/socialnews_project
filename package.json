@@ -8,7 +8,8 @@
     "ci:server": "cd server && npm ci",
     "ci:client": "cd client && npm ci",
     "ci": "npm run ci:server && npm run ci:client",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "start": "npm run build && cd server && npm run start"
   },
   "license": "ISC",
   "devDependencies": {
