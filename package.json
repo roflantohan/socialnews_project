@@ -15,6 +15,9 @@
     "start": "cd server && npm run start",
     "build": "npm run install && npm run build:client && npm start"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "license": "ISC",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
