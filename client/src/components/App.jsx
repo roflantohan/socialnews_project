@@ -48,6 +48,23 @@ const App = (props: any) => {
   const { posts, setPosts, addPosts } = props;
   const { menu } = props;
 
+ const loadPosts = async (sites) => {
+      const change = [];
+      const content = [];
+      sites.map(async (site) => {
+        const data = await request.getContent({ id_site: site, id_post: 0 });
+        if (data.length) {
+          content.push(...data);
+          change.push({
+            id_site: data[data.length - 1].id_site,
+            id_post: data[data.length - 1].id_record,
+          });
+        }
+      });
+      setPosts(content);
+      setLastSites(change);
+    };
+  
   const loadMorePosts = async (sites) => {
     const change = [];
     sites.map(async (site) => {
@@ -64,23 +81,6 @@ const App = (props: any) => {
   };
 
   React.useEffect(() => {
-    const loadPosts = async (sites) => {
-      const change = [];
-      const content = [];
-      sites.map(async (site) => {
-        const data = await request.getContent({ id_site: site, id_post: 0 });
-        if (data.length) {
-          content.push(...data);
-          change.push({
-            id_site: data[data.length - 1].id_site,
-            id_post: data[data.length - 1].id_record,
-          });
-        }
-      });
-      setPosts(content);
-      setLastSites(change);
-    };
-    
     loadPosts(selected_sites);
   }, [selected_sites]);
 

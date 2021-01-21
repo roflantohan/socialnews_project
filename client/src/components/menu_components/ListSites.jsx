@@ -50,6 +50,11 @@ const ListSites = (props) => {
   const { del, changeDelete } = props;
   const { deleted_site, deleteSite } = props;
 
+  const loadSites = async () => {
+      const data = await request.getSites();
+      setAllSites(data);
+    };
+  
   const handleToggle = (value) => () => {
     const currentIndex = selected_sites.indexOf(value);
     const newChecked = [...selected_sites];
@@ -64,10 +69,7 @@ const ListSites = (props) => {
   };
 
   React.useEffect(() => {
-    const loadSites = async () => {
-      const data = await request.getSites();
-      setAllSites(data);
-    };
+    
     loadSites();
   }, [deleted_site]);
 
