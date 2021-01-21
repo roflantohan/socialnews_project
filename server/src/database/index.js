@@ -3,11 +3,11 @@ const { Pool } = require('pg');
 class DataBase {
 	constructor() {
 		this.pool = new Pool({
-		  connectionString: process.env.DATABASE_URL,
-		  ssl: {
-		    rejectUnauthorized: false
-		  }
-		})
+			connectionString: process.env.DATABASE_URL,
+			ssl: {
+				rejectUnauthorized: false,
+			},
+		});
 	}
 
 	deleteSite = async (id_site) => {
