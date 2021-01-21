@@ -1,12 +1,20 @@
 const { Pool } = require('pg');
 
+/*const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+});*/
+
 class DataBase {
 	constructor() {
 		this.pool = new Pool({
-			connectionString: process.env.DATABASE_URL,
-			ssl: {
-				rejectUnauthorized: false,
-			},
+			user: 'admin',
+			host: 'localhost',
+			database: 'socialnews',
+			password: 'admin',
+			port: '5432',
 		});
 	}
 
@@ -27,8 +35,8 @@ class DataBase {
 		const obj = JSON.parse(data);
 		await this.pool
 			.query(
-				`INSERT INTO sites(name_site, url, dynamic_type, container, flex_box, title,href,image,text,author,date, status)
-	       VALUES('${obj.name_site}','${obj.url}','${obj.dynamic}','${obj.container}','${obj.flex_box}','${obj.title}','${obj.href}','${obj.image}','${obj.text}','${obj.author}','${obj.date}', 'checking')`
+				`INSERT INTO sites(name_site, url, dynamic_type, container, title,href,image,text,author,date, status)
+	       VALUES('${obj.name_site}','${obj.url}','${obj.dynamic}','${obj.container}','${obj.title}','${obj.href}','${obj.image}','${obj.text}','${obj.author}','${obj.date}', 'checking')`
 			)
 			.catch((err) => {
 				throw err;
@@ -62,9 +70,9 @@ class DataBase {
 		});
 	};
 
-	getContentUrl = async (url, date) => {
+	getContentUrl = async (id, date) => {
 		const { rows } = await this.pool.query(
-			`SELECT * FROM history WHERE url='${url} AND time_record='${date}'`
+			`SELECT * FROM history WHERE time_record='${date}' AND id_site=${id}`
 		);
 		return rows;
 	};
@@ -92,7 +100,7 @@ class DataBase {
 
 	updateStatusSite = async (id_site, status) => {
 		await this.pool
-			.query(`UPDATE Sites SET status='${status}' WHERE id_site=${id_site}`)
+			.query(`UPDATE Sites SET status="${status}" WHERE id_site=${id_site}`)
 			.catch((err) => {
 				throw err;
 			});

@@ -8,7 +8,7 @@ class Connection {
     return download_post;
   };
   addSite = async (site) => {
-    const data = await fetch('/get-content', {
+    const data = await fetch('/add-site', {
       method: 'POST',
       body: JSON.stringify(site),
     });

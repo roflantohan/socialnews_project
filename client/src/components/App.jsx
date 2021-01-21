@@ -18,7 +18,6 @@ import Button from '@material-ui/core/Button';
 import Header from './main_page_components/Header';
 import Discription from './main_page_components/Discription';
 import Post from './main_page_components/Post';
-import Footer from './main_page_components/Footer';
 import Menu from './menu_components/Menu';
 
 import { request } from '../requests/index';
@@ -127,7 +126,6 @@ const App = (props: any) => {
           )}
         </main>
       </Container>
-      <Footer />
     </React.Fragment>
   );
 };
