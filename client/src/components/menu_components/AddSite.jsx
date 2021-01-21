@@ -36,7 +36,6 @@ const AddSite = (props) => {
   const param_site = {
     name_site: '',
     url: '',
-    flex_box: '',
     title: '',
     href: '',
     image: '',
@@ -61,7 +60,7 @@ const AddSite = (props) => {
 
   const handleSubmit = async (event) => {
     if (validateForm(site.url)) {
-      const flag = await request.Addsite(site);
+      const flag = await request.addSite(site);
       if (flag) {
         changeWarning(2);
         setSite(param_site);
@@ -121,20 +120,6 @@ const AddSite = (props) => {
               onChange={handleChange('url')}
               onPaste={handleChange('url')}
               helperText="Вставьте ссылку на сайт"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              variant="outlined"
-              required
-              fullWidth
-              id="flex_box"
-              label="Flex box"
-              name="flex_box"
-              value={site.flex_box}
-              onChange={handleChange('flex_box')}
-              onPaste={handleChange('flex_box')}
-              helperText="Укажите селектор блока, который можно скролить(Необязательно)"
             />
           </Grid>
           <Grid item xs={12}>
