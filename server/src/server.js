@@ -3,7 +3,7 @@ const fastify = require('fastify')({
 });
 const path = require('path');
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const TIMER = 5 * 60 * 1000;
 
 fastify.register(require('./routes/api'));
