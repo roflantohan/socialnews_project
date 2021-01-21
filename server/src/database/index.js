@@ -1,21 +1,13 @@
 const { Pool } = require('pg');
 
-/*const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});*/
-
 class DataBase {
 	constructor() {
 		this.pool = new Pool({
-			user: 'admin',
-			host: 'localhost',
-			database: 'socialnews',
-			password: 'admin',
-			port: '5432',
-		});
+		  connectionString: process.env.DATABASE_URL,
+		  ssl: {
+		    rejectUnauthorized: false
+		  }
+		})
 	}
 
 	deleteSite = async (id_site) => {
