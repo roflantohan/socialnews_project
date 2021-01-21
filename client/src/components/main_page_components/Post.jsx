@@ -26,7 +26,12 @@ export default function Post(props) {
   const { post } = props;
   return (
     <Grid key={post.id_post} item xs={12} md={6}>
-      <CardActionArea component="a" href={post.href} target="_blank">
+      <CardActionArea
+        component="a"
+        href={post.href}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
         <Card className={classes.card}>
           <div className={classes.cardDetails}>
             <CardContent>
